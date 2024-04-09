@@ -1,13 +1,16 @@
 import './App.css'
-import Generate from './components/Generate'
+import Footer from './components/Footer'
+import GenerateForm from './components/GenerateForm'
+import Header from './components/Header'
 
 function App() {
   return (
-    <>
-      <Generate />
-    </>
+    <div className=" bg-zinc-800 min-h-screen flex flex-col">
+      <Header />
+      <GenerateForm />
+      <Footer />
+    </div>
   )
-
 }
 
 export default App

@@ -1,6 +1,6 @@
 export async function resultFormat(username, userId) {
     return (
-      <div>
+      <div className="text-left">
         {`@${username}`}
         <br />
         {`${userId}`}
