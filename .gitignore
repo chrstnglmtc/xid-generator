@@ -7,18 +7,38 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Node.js dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+build/
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+.vscode/
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Environment files
+.env
+.env.*
+
+# Cached files
+.cache/
+
+# Temporary files
+*.tmp
+
+# Dependencies lock files
+package-lock.json
+yarn.lock
+
+# Public assets
+public/build/
+public/*.tmp
