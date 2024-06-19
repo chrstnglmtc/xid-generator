@@ -71,7 +71,7 @@ export default function GenerateForm() {
             "Convert"
           )}
         </button>
-        <div className="w-full sm:w-2/3 lg:w-1/2 h-40 overflow-y-auto bg-zinc-800 rounded-xl p-4">
+        <div className="w-full sm:w-2/3 lg:w-1/2 h-80 overflow-y-auto bg-zinc-800 rounded-xl p-4">
           {results.map((result, index) => (
             <p key={index}>{result}</p>
           ))}
