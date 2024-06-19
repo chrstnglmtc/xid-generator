@@ -5,7 +5,7 @@ export async function resultFormat(username, userId) {
         <br />
         {`${userId}`}
         <br />
-        {`https://twitter.com/intent/user?user_id=${userId}`}
+        {`https://x.com/intent/user?user_id=${userId}`}
       </div>
     );
   }
