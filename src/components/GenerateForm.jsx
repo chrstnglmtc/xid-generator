@@ -48,7 +48,7 @@ export default function GenerateForm() {
       <form className="flex flex-col items-center py-6 space-y-3">
         <textarea
           rows="3"
-          placeholder="Enter Twitter username or usernames split by commas or new line without @"
+          placeholder="Enter X username or usernames split by commas or new line without @"
           className="p-4 text-white-100 rounded-xl resize-none w-full sm:w-2/3 lg:w-1/2"
           value={usernamesInput}
           onChange={handleInputChange}
