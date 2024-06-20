@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { userIdGenerator } from "./functions/userIdGenerator";
+import { fetchTwitterProfile } from "./functions/fetchTwitterProfile";
 
 export default function GenerateForm() {
   const [usernamesInput, setUsernamesInput] = useState("");
@@ -28,8 +28,8 @@ export default function GenerateForm() {
       .filter((username) => username !== ""); // Remove empty strings
 
     try {
-      const userIds = await userIdGenerator(usernames);
-      setResults(userIds);
+      const results = await Promise.all(usernames.map(fetchTwitterProfile));
+      setResults(results);
     } catch (error) {
       console.error("An error occurred:", error);
     } finally {
@@ -73,7 +73,21 @@ export default function GenerateForm() {
         </button>
         <div className="w-full sm:w-2/3 lg:w-1/2 h-80 overflow-y-auto bg-zinc-800 rounded-xl p-4">
           {results.map((result, index) => (
-            <p key={index}>{result}</p>
+            <div key={index} className="text-left">
+              {result.success ? (
+                <>
+                  <p>@{result.data.username}</p>
+                  <p>{result.data.userId}</p>
+                  <p>{result.data.profileName}</p>
+                  <p>{result.data.profileBio}</p>
+                  <p>{result.data.profileLocation}</p>
+                  <p>{result.data.profileWebsite}</p>
+                  <p>https://x.com/intent/user?user_id={result.data.userId}</p>
+                </>
+              ) : (
+                <p>{result.message}</p>
+              )}
+            </div>
           ))}
         </div>
       </form>
