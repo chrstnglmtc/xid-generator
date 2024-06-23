@@ -2,8 +2,18 @@ import React from "react";
 
 export default function Header() {
   return (
-    <header className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-4 text-center">
-      <h1 className="text-2xl font-bold">X ID Generator</h1>
+    <header className="navbar bg-gradient-to-r from-purple-500 to-indigo-600 text-white">
+      <h1 className="navbar-start text-2xl font-bold">X Tools</h1>
+      <div className="navbar-end flex-none">
+        <ul className="menu menu-horizontal px-1">
+          <li>
+            <a>XID</a>
+          </li>
+          <li>
+            <a>Shadowban</a>
+          </li>
+        </ul>
+      </div>
     </header>
   );
 }
