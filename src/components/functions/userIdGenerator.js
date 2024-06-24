@@ -1,6 +1,10 @@
+const API_BASE_URL = process.env.NODE_ENV === 'production'
+  ? '/.netlify/functions/api'
+  : 'http://localhost:3000';
+
 export async function userIdGenerator(usernames) {
   const fetchTwitterUserId = async (username) => {
-    const url = `http://localhost:3000/twitter/user-lookup?screen_name=${username}`; // Ensure the query parameter matches
+    const url = `${API_BASE_URL}/twitter/user-lookup?screen_name=${username}`;
 
     try {
       const response = await fetch(url);
