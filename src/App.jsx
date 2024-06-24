@@ -8,8 +8,8 @@ function App() {
   return (
     <div className=" bg-zinc-800 min-h-screen flex flex-col h-screen justify-between">
       <Header />
-      {/* <UnderConstruction/> */}
-      <GenerateForm />
+      <UnderConstruction/>
+      {/* <GenerateForm /> */}
       <Footer />
     </div>
   )
