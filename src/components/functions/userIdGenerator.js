@@ -1,46 +1,57 @@
 import { resultFormat } from './resultFormat.jsx';
 
 export async function userIdGenerator(usernames) {
-  const fetchUserId = async (username) => {
-    const url = `https://tweethunter.io/api/convert?inputString=${username}`;
+  const fetchUserData = async (username) => {
+    const url = `https://api.x.com/1.1/users/lookup.json?screen_name=${username}`;
 
-    const headers = {
+    const headers = new Headers({
+      "Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+      "Cookie": "_ga=GA1.2.1987660856.1713947866; g_state={\"i_p\":1713955068859,\"i_l\":1}; kdt=jhW6dgFMBZmvnktbCmdkvYcpENmxXfejeXx6MPVY; dnt=1; auth_multi=\"966499939185442816:b7e67884e4dc8a7c80efd2b2d537ec0edfd19835\"; auth_token=a8f164b7dd6a24010a59fcfeabb0cc31416e908c; guest_id=v1%3A171809498809591119; twid=u%3D1481064308490780677; ct0=0e87ad0a51a55ef4cd75e7ce7f90fc48538f521ad894f92a0542544af1e528dd4bb73b8a38341d000e118fd33edf5ac09cc2d63ce0d1f4bab316de18c10ee08fdc122888b09e4de7cea62cdd806b5d0d; guest_id_ads=v1%3A171809498809591119; guest_id_marketing=v1%3A171809498809591119; lang=en; personalization_id=\"v1_KiBs8v6PpuvQcYRQm2OfkA==\"",
+      "x-csrf-token": "0e87ad0a51a55ef4cd75e7ce7f90fc48538f521ad894f92a0542544af1e528dd4bb73b8a38341d000e118fd33edf5ac09cc2d63ce0d1f4bab316de18c10ee08fdc122888b09e4de7cea62cdd806b5d0d",
+      "authority": "twitter.com",
       "accept": "*/*",
       "accept-language": "en-US,en;q=0.9",
-      "cookie": "_ga_F7Q3BYCL54=GS1.1.1711930018.1.0.1711930060.0.0.0; _ga=GA1.1.136415787.1711930018; __kla_id=eyJjaWQiOiJaakprTkRZeU9UUXRNelkzTkMwME56TmlMVGcxTVRVdFl6Z3pZalUxWlRJMllUWTMiLCIkcmVmZXJyZXIiOnsidHMiOjE3MTg4NDI5OTIsInZhbHVlIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8iLCJmaXJzdF9wYWdlIjoiaHR0cHM6Ly90d2VldGh1bnRlci5pby8ifSwiJGxhc3RfcmVmZXJyZXIiOnsidHMiOjE3MTg4NDI5OTIsInZhbHVlIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8iLCJmaXJzdF9wYWdlIjoiaHR0cHM6Ly90d2VldGh1bnRlci5pby8ifX0=; __Host-next-auth.csrf-token=08be6598d91e2201ac0c3c16bdd2fa5448b0981a6b82219cbd31c26ac0303466; __Secure-next-auth.callback-url=https://app.tweethunter.io; amp_724fdb=veUZTlCeXN8iRJUVMQHuf6...1i0pgsjhf.1i0pgsjhf.0.0.0; amp_724fdb_tweethunter.io=veUZTlCeXN8iRJUVMQHuf6...1i0pgsjhf.1i0pgsjuq.0.0.0; _ga_BH3EC90N3P=GS1.1.1719182372.4.0.1719182372.60.0.0",
-      "priority": "u=1, i",
-      "referer": "https://tweethunter.io/twitter-id-converter",
-      "sec-ch-ua": "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"",
-      "sec-ch-ua-mobile": "?0",
-      "sec-ch-ua-platform": "\"Windows\"",
+      "referer": "https://twitter.com/kirzstin",
+      "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
+      "sec-ch-ua-mobile": "?1",
+      "sec-ch-ua-platform": "\"Android\"",
       "sec-fetch-dest": "empty",
       "sec-fetch-mode": "cors",
       "sec-fetch-site": "same-origin",
-      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-    };
+      "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
+      "x-client-transaction-id": "WYVFDTE+ikPn/0DwxZyPLS3GDlXJ3uQGip6lboZVyCWok+Cndz1TZDvXJNRVjR7Y/PUPcFvKqq95SGFhAGxEzXl99bW4Wg",
+      "x-twitter-active-user": "yes",
+      "x-twitter-auth-type": "OAuth2Session",
+      "x-twitter-client-language": "en"
+    });
 
     try {
-      const response = await fetch(url, { headers });
+      const options = {
+        method: 'GET',
+        headers,
+      };
+
+      const response = await fetch(url, options);
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error(`Error fetching user ID for ${username}:`, error);
+      console.error(`Error fetching user data for ${username}:`, error);
       throw error;
     }
   };
 
   const promises = usernames.map(async (username) => {
     try {
-      const data = await fetchUserId(username);
+      const userData = await fetchUserData(username);
 
-      if (!data.success) {
-        return `Username ${username} not found.`;
+      if (userData.errors) {
+        return `User ${username} not found.`;
       }
 
-      const userId = data.data.user_id;
-      return resultFormat(username, userId);
+      const userId = userData[0].id_str; // Get the id_str field from the first object in the array
+      return userId;
     } catch (error) {
-      return `An error occurred for ${username}.`;
+      return `An error occurred for ${username}: ${error.message}`;
     }
   });
 
