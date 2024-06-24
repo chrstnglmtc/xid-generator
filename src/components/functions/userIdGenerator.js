@@ -1,4 +1,4 @@
-import { resultFormat } from './resultFormat.jsx'; // Adjust the path as necessary
+//import { resultFormat } from './resultFormat.jsx'; // Adjust the path as necessary
 import { fetchUserData } from '../../../server.js';
 
 export async function userIdGenerator(usernames) {
