@@ -14,11 +14,7 @@ Twitter to X ID is a web application built with React and Vite that allows users
 1. Visit the [Twitter to X ID](https://twtxid.netlify.app/) website.
 2. Enter one or more Twitter usernames in the input field, separated by commas or new lines.
 3. Click the "Convert" button to generate the X IDs.
-4. Copy the generated IDs for use in your projects.
-
-## Credits
-
-The Twitter to X ID web application utilizes the API provided by [twitvd.com](https://twitvd.com/) to fetch the numeric ID from Twitter usernames. We appreciate their service and support.
+4. Copy the generated IDs.
 
 ## Feedback and Contributions
 
