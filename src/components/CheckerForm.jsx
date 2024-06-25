@@ -45,44 +45,44 @@ export default function CheckerForm() {
 
   return (
     <div className="container mx-auto py-8 flex-grow items-center p-4">
-    <h1 className="font-bold text-2xl text-slate-50">X Age Checker</h1>
+      <h1 className="font-bold text-2xl text-slate-50">X Age Checker</h1>
       <div className="join items-center py-6">
         <div>
           <div>
-            <input className="input input-bordered join-item text-white-100 bg-zinc-900"
-            placeholder="X Username" 
-            value={usernamesInput}
-            onChange={handleInputChange}
+            <input
+              className="input input-bordered join-item bg-zinc-900 text-white focus:text-white focus:bg-zinc-900"
+              placeholder="X Username"
+              value={usernamesInput}
+              onChange={handleInputChange}
             />
           </div>
         </div>
         <div>
           <button
-          className="btn join-item bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white"
-          onClick={handleClick}
-          disabled={loading}
-        >
-          {loading ? (
-            <>
-              <span
-                className="spinner-border spinner-border-sm"
-                role="status"
-                aria-hidden="true"
-              ></span>
-              Loading...
-            </>
-          ) : (
-            "Search"
-          )}
-        </button>
+            className="btn join-item bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white"
+            onClick={handleClick}
+            disabled={loading}
+          >
+            {loading ? (
+              <>
+                <span
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Loading...
+              </>
+            ) : (
+              "Search"
+            )}
+          </button>
         </div>
       </div>
       <div className="bg-zinc-800 rounded-xl p-4">
-          {results.map((result, index) => (
-            <p key={index}>{result}</p>
-          ))}
+        {results.map((result, index) => (
+          <p key={index}>{result}</p>
+        ))}
       </div>
     </div>
-
   );
 }

@@ -50,7 +50,7 @@ export default function GenerateForm() {
         <textarea
           rows="3"
           placeholder="Enter X username or usernames split by commas or new line without @"
-          className="bg-zinc-900 p-4 text-white-100 rounded-xl resize-none w-full sm:w-2/3 lg:w-1/2"
+          className="bg-zinc-900 text-white focus:text-white focus:bg-zinc-900 p-4 rounded-xl resize-none w-full sm:w-2/3 lg:w-1/2"
           value={usernamesInput}
           onChange={handleInputChange}
         />
