@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { userIdGenerator } from "./functions/userIdGenerator";
+import { accountAge } from "./functions/accountAge";
 
-export default function GenerateForm() {
+export default function CheckerForm() {
   const [usernamesInput, setUsernamesInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
@@ -28,7 +28,7 @@ export default function GenerateForm() {
       .filter((username) => username !== ""); // Remove empty strings
 
     try {
-      const userIds = await userIdGenerator(usernames);
+      const userIds = await accountAge(usernames);
       setResults(userIds);
     } catch (error) {
       console.error("An error occurred:", error);
@@ -44,18 +44,21 @@ export default function GenerateForm() {
   };
 
   return (
-    <div className="container mx-auto py-8 flex-grow p-4">
-    <h1 className="font-bold text-2xl text-slate-50">X ID Generator</h1>
-      <form className="flex flex-col items-center py-6 space-y-3">
-        <textarea
-          rows="3"
-          placeholder="Enter X username or usernames split by commas or new line without @"
-          className="bg-zinc-900 p-4 text-white-100 rounded-xl resize-none w-full sm:w-2/3 lg:w-1/2"
-          value={usernamesInput}
-          onChange={handleInputChange}
-        />
-        <button
-          className="btn w-full sm:w-2/3 lg:w-1/2 py-3 my-8 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white"
+    <div className="container mx-auto py-8 flex-grow items-center p-4">
+    <h1 className="font-bold text-2xl text-slate-50">X Age Checker</h1>
+      <div className="join items-center py-6">
+        <div>
+          <div>
+            <input className="input input-bordered join-item text-white-100 bg-zinc-900"
+            placeholder="X Username" 
+            value={usernamesInput}
+            onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <div>
+          <button
+          className="btn join-item bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white"
           onClick={handleClick}
           disabled={loading}
         >
@@ -69,15 +72,17 @@ export default function GenerateForm() {
               Loading...
             </>
           ) : (
-            "Convert"
+            "Search"
           )}
         </button>
-        <div className=" bg-zinc-800 rounded-xl p-4">
+        </div>
+      </div>
+      <div className="bg-zinc-800 rounded-xl p-4">
           {results.map((result, index) => (
             <p key={index}>{result}</p>
           ))}
-        </div>
-      </form>
+      </div>
     </div>
+
   );
 }
