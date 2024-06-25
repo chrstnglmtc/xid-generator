@@ -30,15 +30,15 @@ export async function ageFormat(username, userAge) {
     <div className="text-center text-white">
       <span>@{username}</span>
       <br />
-      <div className="badge badge-primary badge-outline">Account creation date</div>
+      <div className="badge badge-primary">Account creation date</div>
       <br/>
       <span>{formattedDate}</span>
       <br />
-      <div className="badge badge-primary badge-outline">Timezone</div>
+      <div className="badge badge-primary">Timezone</div>
       <br/>
       <span>{timezone}</span>
       <br />
-      <div className="badge badge-primary badge-outline">Account Age</div>
+      <div className="badge badge-primary">Account Age</div>
       <br/>
       <span>{ageInYears} years, {ageInMonths} months</span>
     </div>
