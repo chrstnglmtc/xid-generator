@@ -5,7 +5,8 @@ import Footer from './components/Footer';
 import GenerateForm from './components/GenerateForm';
 import Header from './components/Header';
 import Home from './components/Home';
-import ShadowForm from './components/ShadowForm';
+// import ShadowForm from './components/ShadowForm';
+import UnderConstruction from './components/UnderConstruction';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/generate" element={<GenerateForm />} />
               <Route path="/checker" element={<CheckerForm />} />
-              <Route path="/shadowban" element={<ShadowForm />} />
+              <Route path="/shadowban" element={<UnderConstruction />} />
             </Routes>
           </div>
         </Header>
