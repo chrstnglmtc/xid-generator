@@ -24,37 +24,19 @@ async function searchUserTop(username) {
     return fetchData('searchUserTop', username);
 }
 
-async function searchUserRepliesLatest(username) {
-    return fetchData('searchUserRepliesLatest', username);
-}
-
-async function searchUserLatest(username) {
-    return fetchData('searchUserLatest', username);
-}
-
 async function checkSearchban(username) {
-    const [topResult, latestResult] = await Promise.all([
-        searchUserTop(username),
-        searchUserLatest(username),
-    ]);
-
+    const topResult = await searchUserTop(username);
     const topStatus = checkStatus(topResult).status;
-    const latestStatus = checkStatus(latestResult).status;
 
-    const searchbanned = topStatus === 'failure' && latestStatus === 'failure';
+    const searchbanned = topStatus === 'failure';
     return { searchbanned };
 }
 
 async function checkGhostban(username) {
-    const [repliesTopResult, repliesLatestResult] = await Promise.all([
-        searchUserRepliesTop(username),
-        searchUserRepliesLatest(username),
-    ]);
-
+    const repliesTopResult = await searchUserRepliesTop(username);
     const repliesTopStatus = checkStatus(repliesTopResult).status;
-    const repliesLatestStatus = checkStatus(repliesLatestResult).status;
 
-    const ghostbanned = repliesTopStatus === 'failure' && repliesLatestStatus === 'failure';
+    const ghostbanned = repliesTopStatus === 'failure';
     return { ghostbanned };
 }
 

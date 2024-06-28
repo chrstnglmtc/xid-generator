@@ -46,9 +46,7 @@ export default function ShadowForm() {
     if (result.status === 'failure') {
       return (
         <div className="text-center text-white">
-          <span>@{result.username}</span>
-          <br />
-          <div className="divider divider-primary">Search Results</div>
+          <div className="divider divider-primary">Search Results for {result.username}</div>
           <div className="badge badge-danger">Error</div>
           <br />
           <div className="badge badge-danger">{result.message}</div>
@@ -57,9 +55,7 @@ export default function ShadowForm() {
     } else if (result.searchbanned && result.ghostbanned) {
       return (
         <div className="text-center text-white">
-          <span>@{result.username}</span>
-          <br />
-          <div className="divider divider-primary">Search Results</div>
+          <div className="divider divider-primary">Search Results for {result.username}</div>
           <div className="badge badge-warning">Searchbanned</div>
           <br />
           <div className="badge badge-warning">No reply by user can be found</div>
@@ -68,9 +64,7 @@ export default function ShadowForm() {
     } else if (result.searchbanned) {
       return (
         <div className="text-center text-white">
-          <span>@{result.username}</span>
-          <br />
-          <div className="divider divider-primary">Search Results</div>
+          <div className="divider divider-primary">Search Results for {result.username}</div>
           <div className="badge badge-warning">Searchbanned</div>
           <br />
           <div className="badge badge-success">At least one reply has been found</div>
@@ -79,9 +73,7 @@ export default function ShadowForm() {
     } else if (result.ghostbanned) {
       return (
         <div className="text-center text-white">
-          <span>@{result.username}</span>
-          <br />
-          <div className="divider divider-primary">Search Results</div>
+          <div className="divider divider-primary">Search Results for {result.username}</div>
           <div className="badge badge-success">Not Searchbanned</div>
           <br />
           <div className="badge badge-warning">No reply by user can be found</div>
@@ -90,9 +82,7 @@ export default function ShadowForm() {
     } else {
       return (
         <div className="text-center text-white">
-          <span>@{result.username}</span>
-          <br />
-          <div className="divider divider-primary">Search Results</div>
+          <div className="divider divider-primary">Search Results for {result.username}</div>
           <div className="badge badge-success">Not Searchbanned</div>
           <br />
           <div className="badge badge-success">At least one reply has been found</div>
@@ -136,6 +126,7 @@ export default function ShadowForm() {
           </button>
         </div>
       </div>
+      <p className="text-info text-sm">Note: This is a work in progress, please don't rely on the results & check manually.</p>
       <div className="bg-zinc-800 rounded-xl p-4">
         {results.map((result, index) => (
           <div key={index}>
