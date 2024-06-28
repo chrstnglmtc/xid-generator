@@ -71,6 +71,9 @@ export default function Header({ children }) {
           <li>
             <Link to="/checker">X Age</Link>
           </li>
+          <li>
+            <Link to="/shadowban">Shadowban Checker</Link>
+          </li>
         </ul>
       </div>
     </div>
