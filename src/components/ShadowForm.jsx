@@ -28,7 +28,7 @@ export default function ShadowForm() {
 
     try {
       const userResults = await shadowCheck(usernames);
-      setResults(userResults.flat()); // Flatten the array of arrays
+      setResults(userResults);
     } catch (error) {
       console.error("An error occurred:", error);
     } finally {
@@ -50,7 +50,7 @@ export default function ShadowForm() {
           <br />
           <div className="divider divider-primary">Search Results</div>
           <div className="badge badge-danger">Error</div>
-          <br/>
+          <br />
           <div className="badge badge-danger">{result.message}</div>
         </div>
       );
@@ -61,7 +61,7 @@ export default function ShadowForm() {
           <br />
           <div className="divider divider-primary">Search Results</div>
           <div className="badge badge-warning">Searchbanned</div>
-          <br/>
+          <br />
           <div className="badge badge-warning">No reply by user can be found</div>
         </div>
       );
@@ -72,7 +72,7 @@ export default function ShadowForm() {
           <br />
           <div className="divider divider-primary">Search Results</div>
           <div className="badge badge-warning">Searchbanned</div>
-          <br/>
+          <br />
           <div className="badge badge-success">At least one reply has been found</div>
         </div>
       );
@@ -83,7 +83,7 @@ export default function ShadowForm() {
           <br />
           <div className="divider divider-primary">Search Results</div>
           <div className="badge badge-success">Not Searchbanned</div>
-          <br/>
+          <br />
           <div className="badge badge-warning">No reply by user can be found</div>
         </div>
       );
@@ -94,7 +94,7 @@ export default function ShadowForm() {
           <br />
           <div className="divider divider-primary">Search Results</div>
           <div className="badge badge-success">Not Searchbanned</div>
-          <br/>
+          <br />
           <div className="badge badge-success">At least one reply has been found</div>
         </div>
       );
@@ -112,6 +112,7 @@ export default function ShadowForm() {
               placeholder="Enter Username"
               value={usernamesInput}
               onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
             />
           </div>
         </div>

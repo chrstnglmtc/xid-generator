@@ -1,64 +1,83 @@
 const apiEndpoint = 'https://x8ki-letl-twmt.n7.xano.io/api:SUDBYvZY';
 
-const checkStatus = (result) => ({
-    status: result && Array.isArray(result.timeline) && result.timeline.length > 0 ? 'success' : 'failure',
-    message: result && Array.isArray(result.timeline) && result.timeline.length > 0 ? 'not' : '',
-});
+const checkStatus = (result) => {
+    const isSuccess = result && Array.isArray(result.timeline) && result.timeline.length > 0;
+    return {
+        status: isSuccess ? 'success' : 'failure',
+        message: isSuccess ? '' : 'No timeline found',
+    };
+};
 
-async function searchUserRepliesTop(username) {
-    const response = await fetch(`${apiEndpoint}/searchUserRepliesTop?username=${username}`, {
+async function fetchData(endpoint, username) {
+    const response = await fetch(`${apiEndpoint}/${endpoint}?username=${username}`, {
         method: 'GET'
     });
     const data = await response.json();
-    return { type: 'Ghostbanned', check: 'searchUserRepliesTop', ...checkStatus(data), username };
+    return data;
+}
+
+async function searchUserRepliesTop(username) {
+    return fetchData('searchUserRepliesTop', username);
 }
 
 async function searchUserTop(username) {
-    const response = await fetch(`${apiEndpoint}/searchUserTop?username=${username}`, {
-        method: 'GET'
-    });
-    const data = await response.json();
-    return { type: 'Searchbanned', check: 'searchUserTop', ...checkStatus(data), username };
+    return fetchData('searchUserTop', username);
 }
 
 async function searchUserRepliesLatest(username) {
-    const response = await fetch(`${apiEndpoint}/searchUserRepliesLatest?username=${username}`, {
-        method: 'GET'
-    });
-    const data = await response.json();
-    return { type: 'Ghostbanned', check: 'searchUserRepliesLatest', ...checkStatus(data), username };
+    return fetchData('searchUserRepliesLatest', username);
 }
 
 async function searchUserLatest(username) {
-    const response = await fetch(`${apiEndpoint}/searchUserLatest?username=${username}`, {
-        method: 'GET'
-    });
-    const data = await response.json();
-    return { type: 'Searchbanned', check: 'searchUserLatest', ...checkStatus(data), username };
+    return fetchData('searchUserLatest', username);
+}
+
+async function checkSearchban(username) {
+    const [topResult, latestResult] = await Promise.all([
+        searchUserTop(username),
+        searchUserLatest(username),
+    ]);
+
+    const topStatus = checkStatus(topResult).status;
+    const latestStatus = checkStatus(latestResult).status;
+
+    const searchbanned = topStatus === 'failure' && latestStatus === 'failure';
+    return { searchbanned };
+}
+
+async function checkGhostban(username) {
+    const [repliesTopResult, repliesLatestResult] = await Promise.all([
+        searchUserRepliesTop(username),
+        searchUserRepliesLatest(username),
+    ]);
+
+    const repliesTopStatus = checkStatus(repliesTopResult).status;
+    const repliesLatestStatus = checkStatus(repliesLatestResult).status;
+
+    const ghostbanned = repliesTopStatus === 'failure' && repliesLatestStatus === 'failure';
+    return { ghostbanned };
 }
 
 export async function shadowCheck(usernames) {
-    const promises = usernames.map(async username => {
+    const promises = usernames.map(async (username) => {
         try {
-            const [repliesTopResult, topResult, repliesLatestResult, latestResult] = await Promise.all([
-                searchUserRepliesTop(username),
-                searchUserTop(username),
-                searchUserRepliesLatest(username),
-                searchUserLatest(username)
+            const [searchbanResult, ghostbanResult] = await Promise.all([
+                checkSearchban(username),
+                checkGhostban(username),
             ]);
-
-            // Determine if searchbanned
-            const isSearchbanned = topResult.status === 'failure' || latestResult.status === 'failure';
-            // Determine if ghostbanned
-            const isGhostbanned = repliesTopResult.status === 'failure' || repliesLatestResult.status === 'failure';
 
             return {
                 username,
-                searchbanned: isSearchbanned,
-                ghostbanned: isGhostbanned
+                ...searchbanResult,
+                ...ghostbanResult,
             };
         } catch (error) {
-            return { username, status: 'failure', message: `An error occurred for ${username}: ${error.message}` };
+            console.error(`An error occurred for ${username}:`, error);
+            return {
+                username,
+                status: 'failure',
+                message: `An error occurred: ${error.message}`,
+            };
         }
     });
 
