@@ -10,9 +10,18 @@ export default function Home() {
           <p className="py-6">
             Welcome to X Tools, your ultimate hub for managing your X (Formerly
             Twitter) account effortlessly. Discover powerful tools for
-            converting X IDs, checking account age, and more. Get ready to explore our newest feature: Shadowban checker.
+            converting X IDs, checking account age, and more. Get ready to explore our tools:
           </p>
-          <Link to="/shadowban" className="btn bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white">Try It Now</Link>
+          <div>
+            <Link to="/generator" className="btn bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white">X ID Generator</Link>
+            <Link to="/checker" className="btn bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white">X Age</Link>
+            <div className="indicator">
+            <span className="indicator-item badge badge-primary">new</span>
+            <Link to="/doesfollow" className="btn bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white">Friendship Checker</Link>
+            </div>
+          </div>
+
+          
         </div>
       </div>
     </div>

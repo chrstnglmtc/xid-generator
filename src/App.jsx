@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 // import ShadowForm from './components/ShadowForm';
 import UnderConstruction from './components/UnderConstruction';
+import FollowCheck from './components/FollowCheck';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/generate" element={<GenerateForm />} />
               <Route path="/checker" element={<CheckerForm />} />
+              <Route path="/doesfollow" element={<FollowCheck />} />
               <Route path="/shadowban" element={<UnderConstruction />} />
             </Routes>
           </div>
