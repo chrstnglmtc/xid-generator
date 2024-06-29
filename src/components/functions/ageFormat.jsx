@@ -34,10 +34,6 @@ export async function ageFormat(username, userAge) {
       <br/>
       <span>{formattedDate}</span>
       <br />
-      <div className="badge badge-primary">Timezone</div>
-      <br/>
-      <span>{timezone}</span>
-      <br />
       <div className="badge badge-primary">Account Age</div>
       <br/>
       <span>{ageInYears} years, {ageInMonths} months</span>
