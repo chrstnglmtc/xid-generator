@@ -13,7 +13,7 @@ export default function Home() {
             converting X IDs, checking account age, and more. Get ready to explore our tools:
           </p>
           <div>
-            <Link to="/generator" className="btn bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white">X ID Generator</Link>
+            <Link to="/generate" className="btn bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white">X ID Generator</Link>
             <Link to="/checker" className="btn bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white">X Age</Link>
             <div className="indicator">
             <span className="indicator-item badge badge-primary">new</span>
