@@ -8,6 +8,7 @@ import Home from './components/Home';
 // import ShadowForm from './components/ShadowForm';
 import UnderConstruction from './components/UnderConstruction';
 import FollowCheck from './components/FollowCheck';
+import NotFound from './components/NotFound';  // Import the NotFound component
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/checker" element={<CheckerForm />} />
               <Route path="/doesfollow" element={<FollowCheck />} />
               <Route path="/shadowban" element={<UnderConstruction />} />
+              <Route path="*" element={<NotFound />} /> 
             </Routes>
           </div>
         </Header>
