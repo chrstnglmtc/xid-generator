@@ -12,7 +12,7 @@ export default function Home() {
             Twitter) account effortlessly. Discover powerful tools for
             converting X IDs, checking account age, and more. Get ready to explore our tools:
           </p>
-          <div>
+          <div className="space-x-1 space-y-3">
             <Link to="/generate" className="btn bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white">X ID Generator</Link>
             <Link to="/checker" className="btn bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white">X Age</Link>
             <div className="indicator">
