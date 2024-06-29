@@ -10,7 +10,7 @@ export default function Header({ children }) {
         {/* Navbar */}
         <div className="navbar bg-gradient-to-r from-purple-500 to-indigo-600 text-white w-full flex items-center justify-between">
           {/* Left section */}
-          <div className="flex items-center w-full">
+          <div className="flex">
             <div className="flex-0 lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -32,7 +32,8 @@ export default function Header({ children }) {
                 </svg>
               </label>
             </div>
-            <div className="flex items-center">
+            <Link to="/">
+            <div className="flex">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
@@ -46,12 +47,15 @@ export default function Header({ children }) {
               </svg>
               <h1 className="text-2xl">X Tools</h1>
             </div>
+            </Link>
           </div>
           {/* Right section */}
           <div className="hidden lg:flex space-x-4 items-center">
             <Link to="/" className="btn btn-ghost">Home</Link>
             <Link to="/generate" className="btn btn-ghost">X ID Generator</Link>
             <Link to="/checker" className="btn btn-ghost">X Age</Link>
+            <Link to="/doesfollow" className="btn btn-ghost">Friendship Checker</Link>
+            <Link to="/shadowban" className="btn btn-ghost">Shadowban Checker</Link>
           </div>
         </div>
         {/* Page content here */}
