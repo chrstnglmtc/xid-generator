@@ -45,7 +45,8 @@ export default function GenerateForm() {
 
   return (
     <div className="container mx-auto py-8 flex-grow p-4">
-    <h1 className="font-bold text-2xl text-slate-50">X ID Generator</h1>
+      <h1 className="text-4xl font-bold text-white">X ID Generator</h1>
+      <p className="text-sm text-white my-2 badge badge-outline">Convert X usernames to X user IDs in a flash!</p>
       <form className="flex flex-col items-center py-6 space-y-3">
         <textarea
           rows="3"

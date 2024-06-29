@@ -45,7 +45,8 @@ export default function CheckerForm() {
 
   return (
     <div className="container mx-auto py-8 flex-grow items-center p-4">
-      <h1 className="font-bold text-2xl text-slate-50">X Age Checker</h1>
+      <h1 className="text-4xl font-bold text-white">X Age Checker</h1>
+      <p className="text-sm text-white my-2 badge badge-outline">Check any X account's creation date & account age</p>
       <div className="join items-center py-6">
         <div>
           <div>

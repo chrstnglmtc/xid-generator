@@ -47,12 +47,13 @@ export default function FollowCheck() {
 
   return (
     <div className="container mx-auto py-8 flex-grow items-center p-4">
-      <h1 className="font-bold text-2xl text-slate-50">Friendship Checker</h1>
+      <h1 className="text-4xl font-bold text-white">Friendship Checker</h1>
+      <p className="text-sm text-white my-2 badge badge-outline">Check X accounts' friendship</p>
       <div className="flex flex-col items-center space-y-2 m-5">
         <div>
           <input
             className="input input-bordered bg-zinc-900 text-white focus:text-white focus:bg-zinc-900"
-            placeholder="Source"
+            placeholder="Source X account"
             value={sourceUsername}
             onChange={handleSourceInputChange}
           />
@@ -60,7 +61,7 @@ export default function FollowCheck() {
         <div>
           <input
             className="input input-bordered bg-zinc-900 text-white focus:text-white focus:bg-zinc-900"
-            placeholder="Target"
+            placeholder="Target X account"
             value={targetUsername}
             onChange={handleTargetInputChange}
           />
